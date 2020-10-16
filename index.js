@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config()
-const port = 4200;
+const port = 5000;
 
 const app = express();
 
@@ -15,16 +15,28 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 client.connect(err => {
   const agencyCollection = client.db("creativeAgency").collection("serviceOrder");
   
-    // app.post('/addServiceOrder', (req, res) => {
-    //     const serviceOrder = res.body;
-    //     agencyCollection.insertOne(serviceOrder)
-    //     .then( result => {
-    //         res.send(result.insertedCount)
-    //     })
-    // })
-    console.log('db connected success');
+//     app.post('/newOrder', (req, res) => {
+//         const serviceOrder = res.body;
+//         agencyCollection.insertOne(serviceOrder)
+//         .then( result => {
+//             res.send(result.insertedCount>0)
+//         })
+//         console.log(serviceOrder);
+//     })
+//    // console.log('db connected success');
+// });
+
+app.post('/newOrder', (req, res) => {
+  const newOrder = req.body;
+  agencyCollection.insertOne(newOrder)
+  .then( result => {
+      res.send(result.insertedCount > 0);
+    
+  })
+  console.log(newOrder);
 });
 
+});
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
@@ -32,4 +44,8 @@ app.get('/', (req, res) => {
   
 
 
-  app.listen(process.env.PORT || port);
+  // app.listen(process.env.PORT || port)
+
+  app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
+  })
