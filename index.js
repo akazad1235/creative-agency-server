@@ -36,7 +36,19 @@ app.post('/newOrder', (req, res) => {
   console.log(newOrder);
 });
 
+app.get('/orderList', (req, res) => {
+  agencyCollection.find({})
+  .toArray((err, documents) => {
+    res.send(documents);
+  })
+})
+
+
+
+
+
 });
+
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
