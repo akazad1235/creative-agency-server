@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const fileUpload = require('express-fileUpload');
 require('dotenv').config();
-const port = 5000;
+const port = 4200;
 
 const app = express();
 
@@ -105,6 +105,6 @@ app.get('/', (req, res) => {
   
 
 
-   app.listen(process.env.PORT || port)
+  app.listen(process.env.PORT || port);
 
   
