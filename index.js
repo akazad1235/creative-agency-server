@@ -87,7 +87,7 @@ app.get('/clientReview', (req, res) => {
   })
 
 
-    //send service to home page
+    //send service to homepage
 app.get('/serviceList', (req, res) => {
   addServiceCollection.find({})
   .toArray((err, documents) => {
