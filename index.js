@@ -33,7 +33,7 @@ app.post('/newOrder', (req, res) => {
 
 //customer order list
 app.get('/orderList', (req, res) => {
-  agencyCollection.find({})
+  agencyCollection.find({email:req.query.email})
   .toArray((err, documents) => {
     res.send(documents);
   })
